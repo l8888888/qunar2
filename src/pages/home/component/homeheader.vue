@@ -22,6 +22,8 @@ export default {
     .header-left
       float: left
       width: .64rem
+      span
+        padding-left: .2rem
     .header-input
       flex: 1
       height: .64rem
@@ -38,4 +40,8 @@ export default {
       width: 1.24rem
       float: right
       text-align: center
+      font-size: .28rem
+      span
+        font-size: .1rem
+        padding-left: .08rem
 </style>
