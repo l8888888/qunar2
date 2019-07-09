@@ -1,7 +1,7 @@
 <template>
     <div class="icons">
         <swiper>
-            <swiper-slide v-for="(page,index) in pages" :key="index">
+            <swiper-slide :swiperOption="swiperOption" v-for="(page,index) in pages" :key="index">
                 <div class="icon" v-for="item in page" :key="item.id">
                     <div class="icon-img"><img :src="item.img" ></div>
                     <p class="icon-content">{{item.dec}}</p>
@@ -16,6 +16,7 @@ export default {
   name: 'homeicons',
   data() {
       return {
+          swiperOption: {autoplay: false},
           iconList: [
               {id: 1,img: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png", dec: "景点门票门票门票门票门票门票"},
               {id: 2,img: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png", dec: "景点门票"},
@@ -36,7 +37,6 @@ export default {
       pages(){
           const pages = []
           this.iconList.forEach((item,index,arr)=>{
-              console.log(arr.length)
                const page = Math.floor(index/8)
               !pages[page] && (pages[page] = [])
               pages[page].push(item)
