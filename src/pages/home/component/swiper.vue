@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
-        <swiper :options="swiperOption">
-            <swiper-slide v-for="item in swiperImg" :key="swiperImg.id" ><img :src="item.img" /></swiper-slide>
+        <swiper :options="swiperOption" v-if="showSwiper">
+            <swiper-slide v-for="item in list" :key="item.id" ><img :src="item.imgUrl" /></swiper-slide>
             <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>
     </div>
@@ -10,17 +10,20 @@
 <script>
 export default {
   name: 'homeswiper',
+  props: {
+    list: Array
+  },
   data() {
     return {
-    swiperOption: {
-        pagination: '.swiper-pagination',
-        loop: true
-    },
-    swiperImg:[
-            {id: 1, img: "https://source.qunarzz.com/site/images/wns/20190705_qunar_dujia_homepage_top_banner_1.jpg"},
-            {id: 2, img: "https://source.qunarzz.com/site/images/wns/20190705_qunar_dujia_homepage_top_banner_1.jpg"},
-            {id: 3, img: "https://source.qunarzz.com/site/images/wns/20190705_qunar_dujia_homepage_top_banner_1.jpg"}
-        ]
+      swiperOption: {
+          pagination: '.swiper-pagination',
+          loop: true
+      }
+    }
+  },
+  computed:{
+    showSwiper(){
+      return this.list.length
     }
   }
 }

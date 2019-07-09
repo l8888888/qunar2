@@ -1,16 +1,16 @@
 <template>
   <div class="recommand">
     <div class="title">热销推荐</div>
-    <ul>
+    <ul v-if="showRcm">
         <li 
             class="rcm-item"
-            v-for="item in rcmList"
+            v-for="item in list"
             :key="item.id"
         >
-            <img class="rcm-item-img" :src="item.img" />
+            <img class="rcm-item-img" :src="item.imgUrl" />
             <div class="rcm-content">
                 <p class="rcm-title">{{item.title}}</p>
-                <p class="rcm-dec">{{item.dec}}</p>
+                <p class="rcm-dec">{{item.desc}}</p>
                 <button class="rcm-det">详情查看</button>
             </div>
         </li>
@@ -21,15 +21,12 @@
 <script>
 export default {
   name: 'HomeRecommand',
-  data() { 
-    return {
-        rcmList: [
-            {id: 1, img: "http://img1.qunarzz.com/sight/p0/1507/64/34362835b4a219af8b36803d31a6380f.water.jpg_200x200_bc5c0452.jpg", title: "深圳野生动物园(AAAA景区)", dec: "广东省深圳市南山区西丽镇西丽路4065号"},
-            {id: 2, img: "http://img1.qunarzz.com/sight/p0/1507/64/34362835b4a219af8b36803d31a6380f.water.jpg_200x200_bc5c0452.jpg", title: "深圳野生动物园(AAAA景区)", dec: "广东省深圳市南山区西丽镇西丽路4065号"},
-            {id: 3, img: "http://img1.qunarzz.com/sight/p0/1507/64/34362835b4a219af8b36803d31a6380f.water.jpg_200x200_bc5c0452.jpg", title: "深圳野生动物园(AAAA景区)", dec: "广东省深圳市南山区西丽镇西丽路4065号"},
-            {id: 4, img: "http://img1.qunarzz.com/sight/p0/1507/64/34362835b4a219af8b36803d31a6380f.water.jpg_200x200_bc5c0452.jpg", title: "深圳野生动物园(AAAA景区)", dec: "广东省深圳市南山区西丽镇西丽路4065号"},
-            {id: 5, img: "http://img1.qunarzz.com/sight/p0/1507/64/34362835b4a219af8b36803d31a6380f.water.jpg_200x200_bc5c0452.jpg", title: "深圳野生动物园(AAAA景区)", dec: "广东省深圳市南山区西丽镇西丽路4065号"},
-        ]
+  props: {
+    list: Array
+  },
+  computed: {
+    showRcm() {
+      return this.list.length
     }
   }
  }
