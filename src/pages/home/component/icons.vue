@@ -40,8 +40,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  @import '~style/variables.styl';
-  @import '~style/mixins.styl';
+  @import '~style/variables.styl'
+  @import '~style/mixins.styl'
     .icons
       margin-top .2rem
     .icons >>> .swiper-container

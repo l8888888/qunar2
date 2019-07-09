@@ -44,8 +44,6 @@ export default {
       this.swiperList = data.swiperList
       this.weekendList = data.weekendList
       this.city = data.city
-      console.log(data)
-      console.log(this.recommendList)
     }
   },
   mounted() {
