@@ -23,8 +23,13 @@ export default {
   },
   data() { 
     return {
-      touchStatus:false
+      touchStatus:false,
+      listY:null,
+      timer:null
     }
+  },
+  updated(){
+    this.listY = this.$refs['A'][0].offsetTop
   },
   methods: {
     handleClk(e){
@@ -34,14 +39,17 @@ export default {
       this.touchStatus = true
     },
     handleTouchMove(e){
-      if(this.touchStatus){
-        const betY = this.$refs['A'][0].offsetTop
-        const touchY = e.touches[0].clientY - 79
-        const index = Math.floor((touchY-betY)/20)
-        if(index >= 0 && index < this.letters.length){
-          this.$emit('change',this.letters[index])
-        }
-      }
+      if(this.timer) clearTimeout(this.timer)
+      this.timer = setTimeout ( () => {
+        if(this.touchStatus){
+          const touchY = e.touches[0].clientY - 79
+          const index = Math.floor((touchY-this.listY)/20)
+          if(index >= 0 && index < this.letters.length){
+            this.$emit('change',this.letters[index])
+          }
+       }
+      }, 10)
+      
     },
     handleTouchEnd(){
       this.touchStatus = false
