@@ -1,7 +1,7 @@
 <template>
   <ul 
     class="list"
-      @touchstart = "handleTouchStart"
+    @touchstart = "handleTouchStart"
     @touchmove = "handleTouchMove"
     @touchend = "handleTouchEnd"  
   >
@@ -35,8 +35,9 @@ export default {
     handleClk(e){
       this.$emit('change',e.target.innerHTML)
     },
-    handleTouchStart(e){
+    handleTouchStart(e,n){
       this.touchStatus = true
+      console.log(e,n)
     },
     handleTouchMove(e){
       if(this.timer) clearTimeout(this.timer)
@@ -48,7 +49,7 @@ export default {
             this.$emit('change',this.letters[index])
           }
        }
-      }, 10)
+      }, 6)
       
     },
     handleTouchEnd(){

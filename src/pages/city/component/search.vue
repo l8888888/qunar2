@@ -4,13 +4,14 @@
         <input v-model="keyword" class="search-box" type="text" placeholder="请输入城市名或拼音" />
     </div>
     <ul class="search-result" v-show="keyword">
-      <li class="item" v-for="(item,index) in srhResult" :key="index">{{item.name}}</li>
+      <li class="item" v-for="(item,index) in srhResult" :key="index" @click="handleClk(item.name)">{{item.name}}</li>
       <li class="item" v-show="noData">没有匹配的数据</li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex"
 export default {
   name: 'citySearch',
   props: {
@@ -24,7 +25,11 @@ export default {
     }
   },
   methods: {
-    
+    handleClk(data){
+      this.$router.push('/')
+      this.changeCity(data)
+    },
+    ...mapMutations(['changeCity'])
   },
   computed: {
     noData(){

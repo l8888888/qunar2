@@ -2,7 +2,8 @@
   <div class="recommand">
     <div class="title">热销推荐</div>
     <ul v-if="showRcm">
-        <li 
+        <router-link
+            :to="'/detail/'+item.id" 
             class="rcm-item"
             v-for="item in list"
             :key="item.id"
@@ -13,7 +14,7 @@
                 <p class="rcm-dec">{{item.desc}}</p>
                 <button class="rcm-det">详情查看</button>
             </div>
-        </li>
+        </router-link>
     </ul>
   </div>
 </template>

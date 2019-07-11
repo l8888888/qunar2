@@ -4,7 +4,7 @@
         <div class="header-input"><span class="iconfont">&#xe632;</span>输入城市/景点/游玩主题</div>
         <router-link to="/city"> 
           <div class="header-right">
-              {{cityBtn}}
+              {{this.$store.state.city}}
               <span class="iconfont">&#xe62d;</span>
           </div>
         </router-link>
@@ -27,6 +27,7 @@ export default {
 
 <style lang='stylus' scoped>
   @import '~style/variables.styl'
+  @import '~style/mixins.styl'
   .header
     display: flex
     line-height: $headerHeight
@@ -50,10 +51,11 @@ export default {
       span
         padding-left: .2rem
     .header-right
-      width: 1.24rem
+      min-width: 1.24rem
       float: right
       text-align: center
       font-size: .28rem
+      padding 0 .08rem
       color: #fff
       span
         font-size: .1rem

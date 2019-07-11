@@ -8,7 +8,7 @@
             <div class="title border-topbottom">当前城市</div>
             <div class="button-list">
                 <div class="button-wrapper">
-                    <div class="button">北京</div>
+                    <div class="button">{{this.city}}</div>
                 </div>
             </div>
         </div>
@@ -16,14 +16,14 @@
             <div class="title border-topbottom">热门城市</div>
             <div class="button-list">
                 <div class="button-wrapper" v-for="item in hot" :key="item.id">
-                    <div class="button">{{item.name}}</div>
+                    <div class="button" @click="handleClk(item.name)">{{item.name}}</div>
                 </div>
             </div>
         </div>
         <div class="area" v-for="(item,key) in cities" :key="key" :ref="key">
             <div class="title border-topbottom">{{key}}</div>
             <div class="item-list">
-                <div class="item boder-bott" v-for="city in item" :key="city.id">{{city.name}}</div>
+                <div class="item boder-bott" v-for="city in item" :key="city.id" @click="handleClk(city.name)">{{city.name}}</div>
             </div>
         </div>
     </div>
@@ -32,6 +32,8 @@
 
 <script>
 import BetterScroll from "better-scroll"
+import { mapState } from "vuex"
+import { mapMutations } from "vuex"
 export default {
   name: 'list',
   props: {
@@ -45,10 +47,17 @@ export default {
     }
   },
   methods: {
-
+    handleClk(data){
+        this.$router.push('/')
+        this.changeCity(data)
+    },
+    ...mapMutations(['changeCity'])
   },
   mounted() {
     this.scroll = new BetterScroll(this.$refs.wrapper)
+  },
+  computed: {
+    ...mapState(['city'])  
   },
   watch: {
       letter() {
