@@ -3,7 +3,7 @@
     <div class="wrapper" @click="handleClk">
         <swiper :options="swiperOption">
             <swiper-slide v-for="item in img" :key="item.id">
-              <img class="swiper-img" :src="item.imgUrl" />
+              <img class="swiper-img" :src="item" />
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
         </swiper>

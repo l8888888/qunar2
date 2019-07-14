@@ -1,31 +1,36 @@
 <template>
   <div>
     <div class="banner" @click="handleClk">
-      <img src="http://img1.qunarzz.com/sight/p0/1508/2e/d9363ce50a88c8c5ff5a138c67687cd4.water.jpg_600x330_28bda6b0.jpg" class="banner-img" />
+      <img :src="bannerImg" class="banner-img" />
       <div class="banner-btm">
-        <div class="banner-info">深圳野生动物园</div>
-        <div class="banner-num"><span class="iconfont">&#xe791;</span>22</div>
+        <div class="banner-info">{{sightName}}</div>
+        <div class="banner-num"><span class="iconfont">&#xe791;</span>{{glryImg.length}}</div>
       </div>
     </div>
-    <Gallery :img="img" @hideGlry="handleHideGlry" v-show="showGlry"></Gallery>
+    <fade-animation>
+      <Gallery :img="glryImg" @hideGlry="handleHideGlry" v-if="showGlry"></Gallery>
+    </fade-animation>
   </div>
 </template>
 
 <script>
 import Gallery from "common/gallery/Gallery"
+import FadeAnimation from "common/fade/fadeAnimation"
 export default {
   name: 'Banner',
+  props: {
+    sightName: String,
+    glryImg: Array,
+    bannerImg: String
+  },
   data() { 
     return {
-      img: [
-        {id: 1, imgUrl: "http://img1.qunarzz.com/sight/p0/1508/18/8169b3d719fa1d280eea16d8c72ca069.water.jpg_r_800x800_a0a66301.jpg"},
-        {id: 2, imgUrl: "http://img1.qunarzz.com/sight/p0/1508/18/8169b3d719fa1d280eea16d8c72ca069.water.jpg_r_800x800_a0a66301.jpg"}
-      ],
       showGlry:false ,
     }
   },
   components: {
-    Gallery
+    Gallery,
+    FadeAnimation
   },
   methods: {
     handleClk(){
